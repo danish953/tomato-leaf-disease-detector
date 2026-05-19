@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+.env
+
+plant_disease.db
+database/*.db
+
+static/uploads/
+static/gradcam/
+
+outputs_mobilenetv4_android_final/

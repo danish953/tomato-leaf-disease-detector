@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Tomato Leaf AI{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css', v='2') }}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Tomato Leaf AI home">
+      <span class="brand-mark">T</span>
+      <span>Tomato Leaf AI</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/" class="{% block nav_home %}{% endblock %}">Detect</a>
+      <a href="/history" class="{% block nav_history %}{% endblock %}">History</a>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <span>MobileNetV4 + ONNX Runtime</span>
+    <span>SQLite history</span>
+    <span>Grad-CAM visualization</span>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction History{% endblock %}
+{% block nav_history %}active{% endblock %}
+
+{% block content %}
+<section class="page-wrap">
+  <div class="panel-heading history-heading">
+    <div>
+      <p class="eyebrow">Saved predictions</p>
+      <h1>Prediction History</h1>
+    </div>
+    <a class="button primary compact" href="/">New Detection</a>
+  </div>
+  <div id="historyList" class="history-list">
+    <div class="loading-card">Loading history...</div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/history.js', v='2') }}"></script>
+{% endblock %}

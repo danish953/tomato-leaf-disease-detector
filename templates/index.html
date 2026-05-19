@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Detect Tomato Leaf Disease{% endblock %}
+{% block nav_home %}active{% endblock %}
+
+{% block content %}
+<section class="workspace">
+  <div class="intro-panel">
+    <p class="eyebrow">AI tomato leaf disease detection</p>
+    <h1>Upload a leaf image and get a field-ready diagnosis.</h1>
+    <p class="lead">
+      The backend preprocesses the image, runs your MobileNetV4 ONNX model, creates a heatmap, and stores the result for review.
+    </p>
+    <div class="metric-row">
+      <div><strong>224x224</strong><span>model input</span></div>
+      <div><strong>Top 3</strong><span>predictions</span></div>
+      <div><strong>SQLite</strong><span>history</span></div>
+    </div>
+  </div>
+
+  <section class="detect-panel" aria-labelledby="detect-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Detect</p>
+        <h2 id="detect-title">Analyze a Tomato Leaf</h2>
+      </div>
+      <a class="ghost-link" href="/history">View history</a>
+    </div>
+
+    <form id="detectForm" class="detect-grid">
+      <div>
+        <label id="dropZone" class="drop-zone" for="imageInput">
+          <input id="imageInput" name="image" type="file" accept=".jpg,.jpeg,.png,.webp,image/*">
+          <span class="upload-icon">+</span>
+          <strong>Drop image here or browse</strong>
+          <span>JPG, JPEG, PNG, or WEBP up to your configured upload limit.</span>
+        </label>
+        <p id="validationMessage" class="form-message" role="alert"></p>
+      </div>
+
+      <div class="preview-shell">
+        <div id="emptyPreview" class="empty-preview">Image preview appears here</div>
+        <img id="previewImage" class="preview-image" alt="Selected tomato leaf preview">
+      </div>
+    </form>
+
+    <div class="action-bar">
+      <button id="clearButton" class="button secondary" type="button" disabled>Clear</button>
+      <button id="detectButton" class="button primary" type="button" disabled>
+        <span class="button-spinner" aria-hidden="true"></span>
+        <span id="detectButtonText">Run Detection</span>
+      </button>
+    </div>
+  </section>
+
+  <section id="inlineResult" class="result-preview hidden" aria-live="polite"></section>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/app.js', v='2') }}"></script>
+{% endblock %}
